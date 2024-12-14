@@ -33,6 +33,16 @@ class MainTest {
     }
 
     @Test
+    @Disabled("Тест отключён из-за долгого выполнения")
+    @DisplayName("Тест метода findWordWithMostI: долгий ввод")
+    void testFindWordWithMostILongInput() {
+        String input = "и ".repeat(10_000) + "информация";
+        assertTimeout(Duration.ofSeconds(1), () -> {
+            assertEquals("информация", Main.findWordWithMostI(input));
+        });
+    }
+
+    @Test
     @DisplayName("Тест метода maxDiagonalSum: базовый случай")
     void testMaxDiagonalSum() {
         int[][] matrix = {
@@ -41,16 +51,6 @@ class MainTest {
                 {7, 8, 9}
         };
         assertEquals(15, Main.maxDiagonalSum(matrix));
-    }
-
-    @Test
-    @Disabled("Тест отключён из-за долгого выполнения")
-    @DisplayName("Тест метода findWordWithMostI: долгий ввод")
-    void testFindWordWithMostILongInput() {
-        String input = "и ".repeat(10_000) + "информация";
-        assertTimeout(Duration.ofSeconds(1), () -> {
-            assertEquals("информация", Main.findWordWithMostI(input));
-        });
     }
 
     @Test
