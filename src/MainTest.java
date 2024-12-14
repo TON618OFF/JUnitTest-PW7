@@ -51,8 +51,8 @@ class MainTest {
                 {7, 8, 9}
         };
 
-        int mainDiagonalSum = matrix[0][0] + matrix[1][1] + matrix[2][2]; // 15
-        int secondaryDiagonalSum = matrix[2][0] + matrix[1][1] + matrix[0][2]; // 15
+        int mainDiagonalSum = matrix[0][0] + matrix[1][1] + matrix[2][2];
+        int secondaryDiagonalSum = matrix[2][0] + matrix[1][1] + matrix[0][2];
         int expectedMax = Math.max(mainDiagonalSum, secondaryDiagonalSum);
 
         int result = Main.maxDiagonalSum(matrix);
@@ -60,7 +60,7 @@ class MainTest {
         System.out.println("Сумма побочной диагонали: " + secondaryDiagonalSum);
         System.out.println("Наибольшая сумма диагоналей: " + result);
 
-        assertEquals(expectedMax, result); // Проверяем правильность результата
+        assertEquals(expectedMax, result);
     }
 
 
@@ -83,10 +83,15 @@ class MainTest {
             "'один', О",
             "'два слова', ДС"
     })
-    @DisplayName("Тест метода extractFirstLettersToUpperCase: параметризованный")
+    @DisplayName("Тест метода extractFirstLettersToUpperCase: параметризованный с выводом")
     void testExtractFirstLettersToUpperCase(String input, String expected) {
-        assertEquals(expected, Main.extractFirstLettersToUpperCase(input));
+        String result = Main.extractFirstLettersToUpperCase(input);
+        System.out.println("Входная строка: \"" + input + "\"");
+        System.out.println("Ожидаемый результат: \"" + expected + "\"");
+        System.out.println("Фактический результат: \"" + result + "\"");
+        assertEquals(expected, result); // Проверка корректности результата
     }
+
 
     @Test
     @DisplayName("Тест метода extractFirstLettersToUpperCase: исключения")
