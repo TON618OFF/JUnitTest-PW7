@@ -43,15 +43,26 @@ class MainTest {
     }
 
     @Test
-    @DisplayName("Тест метода maxDiagonalSum: базовый случай")
-    void testMaxDiagonalSum() {
+    @DisplayName("Тест метода maxDiagonalSum: сравнение диагоналей")
+    void testMaxDiagonalSumComparison() {
         int[][] matrix = {
                 {1, 2, 3},
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        assertEquals(15, Main.maxDiagonalSum(matrix));
+
+        int mainDiagonalSum = matrix[0][0] + matrix[1][1] + matrix[2][2]; // 15
+        int secondaryDiagonalSum = matrix[2][0] + matrix[1][1] + matrix[0][2]; // 15
+        int expectedMax = Math.max(mainDiagonalSum, secondaryDiagonalSum);
+
+        int result = Main.maxDiagonalSum(matrix);
+        System.out.println("Сумма главной диагонали: " + mainDiagonalSum);
+        System.out.println("Сумма побочной диагонали: " + secondaryDiagonalSum);
+        System.out.println("Наибольшая сумма диагоналей: " + result);
+
+        assertEquals(expectedMax, result); // Проверяем правильность результата
     }
+
 
     @Test
     @DisplayName("Test exceptions in maxDiagonalSum method")
