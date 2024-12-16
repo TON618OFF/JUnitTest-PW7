@@ -51,17 +51,19 @@ class MainTest {
                 {7, 8, 9}
         };
 
-        int mainDiagonalSum = matrix[0][0] + matrix[1][1] + matrix[2][2];
-        int secondaryDiagonalSum = matrix[2][0] + matrix[1][1] + matrix[0][2];
-        int expectedMax = Math.max(mainDiagonalSum, secondaryDiagonalSum);
+        int primaryDiagonalSum = Main.calculatePrimaryDiagonalSum(matrix);
+        int secondaryDiagonalSum = Main.calculateSecondaryDiagonalSum(matrix);
+        int expectedMax = Math.max(primaryDiagonalSum, secondaryDiagonalSum);
 
         int result = Main.maxDiagonalSum(matrix);
-        System.out.println("Сумма главной диагонали: " + mainDiagonalSum);
+
+        System.out.println("Сумма главной диагонали: " + primaryDiagonalSum);
         System.out.println("Сумма побочной диагонали: " + secondaryDiagonalSum);
         System.out.println("Наибольшая сумма диагоналей: " + result);
 
         assertEquals(expectedMax, result);
     }
+
 
 
     @Test
@@ -89,7 +91,7 @@ class MainTest {
         System.out.println("Входная строка: \"" + input + "\"");
         System.out.println("Ожидаемый результат: \"" + expected + "\"");
         System.out.println("Фактический результат: \"" + result + "\"");
-        assertEquals(expected, result); // Проверка корректности результата
+        assertEquals(expected, result);
     }
 
 

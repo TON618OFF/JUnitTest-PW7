@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 public class Main {
 
-    // Метод 1: Найти слово, где больше всего встречается буква "И"
     public static String findWordWithMostI(String sentence) {
         if (sentence == null || sentence.isEmpty()) {
             throw new IllegalArgumentException("Предложение не может быть пустым");
@@ -16,32 +15,41 @@ public class Main {
                 .orElse("");
     }
 
-    // Метод 2: Найти наибольшую сумму по диагоналям
+    public static int calculatePrimaryDiagonalSum(int[][] matrix) {
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            sum += matrix[i][i];
+        }
+        return sum;
+    }
+
+    public static int calculateSecondaryDiagonalSum(int[][] matrix) {
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            sum += matrix[i][matrix.length - i - 1];
+        }
+        return sum;
+    }
+
     public static int maxDiagonalSum(int[][] matrix) {
         if (matrix == null || matrix.length == 0) {
-            throw new IllegalArgumentException("Matrix cannot be null or empty");
+            throw new IllegalArgumentException("Матрица не может быть пустой или нулевой");
         }
 
         int n = matrix.length;
         for (int[] row : matrix) {
             if (row.length != n) {
-                throw new IllegalArgumentException("Matrix must be square");
+                throw new IllegalArgumentException("Матрица должна быть квадратной");
             }
         }
 
-        int primaryDiagonalSum = 0;
-        int secondaryDiagonalSum = 0;
-
-        for (int i = 0; i < n; i++) {
-            primaryDiagonalSum += matrix[i][i];
-            secondaryDiagonalSum += matrix[i][n - i - 1];
-        }
+        int primaryDiagonalSum = calculatePrimaryDiagonalSum(matrix);
+        int secondaryDiagonalSum = calculateSecondaryDiagonalSum(matrix);
 
         return Math.max(primaryDiagonalSum, secondaryDiagonalSum);
     }
 
 
-    // Метод 3: Вернуть строку из первых букв слов в верхнем регистре
     public static String extractFirstLettersToUpperCase(String sentence) {
         if (sentence == null || sentence.isEmpty()) {
             throw new IllegalArgumentException("Строка не может быть пустой");
